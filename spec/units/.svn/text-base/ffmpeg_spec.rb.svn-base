@@ -2,37 +2,37 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 module RVideo
   module Tools
-  
+
     describe Ffmpeg do
       before do
         setup_ffmpeg_spec
       end
-      
+
       it "should initialize with valid arguments" do
         @ffmpeg.class.should == Ffmpeg
       end
-      
+
       it "should have the correct tool_command" do
         @ffmpeg.tool_command.should == 'ffmpeg'
       end
-      
+
       it "should call parse_result on execute, with a ffmpeg result string" do
         @ffmpeg.should_receive(:parse_result).once.with /\AFFmpeg version/
         @ffmpeg.execute
       end
-      
+
       it "should mixin AbstractTool" do
         Ffmpeg.included_modules.include?(AbstractTool::InstanceMethods).should be_true
       end
-      
+
       it "should set supported options successfully" do
         @ffmpeg.options[:resolution].should == @options[:resolution]
         @ffmpeg.options[:input_file].should == @options[:input_file]
         @ffmpeg.options[:output_file].should == @options[:output_file]
       end
-      
+
     end
-    
+
     describe Ffmpeg, " magic variables" do
       before do
         mock_inspector = mock("inspector")
@@ -41,51 +41,51 @@ module RVideo
         mock_inspector.stub!(:width).and_return 1280
         mock_inspector.stub!(:height).and_return 720
       end
-      
+
       it 'should access the original fps (ffmpeg)' do
         options = {:input_file => "foo", :output_file => "bar"}
         ffmpeg = Ffmpeg.new("ffmpeg -i $input_file$ -ar 44100 -ab 64 -vcodec xvid -acodec mp3 $original_fps$ -s 320x240 -y $output_file$", options)
         ffmpeg.command.should == "ffmpeg -i #{options[:input_file]} -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 23.98 -s 320x240 -y #{options[:output_file]}"
       end
-      
+
       it 'should create width/height (ffmpeg)' do
         command = "ffmpeg -i $input_file$ -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s $resolution$ -aspect $aspect_ratio$ -y $output_file$"
         ffmpeg = Ffmpeg.new(command, {:input_file => "foo", :output_file => "bar", :width => "640", :height => "360"})
         ffmpeg.command.should == "ffmpeg -i foo -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s 640x360 -aspect 640:360 -y bar"
       end
-      
+
       it 'should support calculated height' do
         command = "ffmpeg -i $input_file$ -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s $resolution$ -aspect $aspect_ratio$ -y $output_file$"
         ffmpeg = Ffmpeg.new(command, {:input_file => "foo", :output_file => "bar", :width => "640", :height => "x"})
         ffmpeg.command.should == "ffmpeg -i foo -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s 640x368 -aspect 640:368 -y bar"
       end
-      
+
       it 'should support calculated width' do
         command = "ffmpeg -i $input_file$ -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s $resolution$ -aspect $aspect_ratio$ -y $output_file$"
         ffmpeg = Ffmpeg.new(command, {:input_file => "foo", :output_file => "bar", :width => "x", :height => "360"})
         ffmpeg.command.should == "ffmpeg -i foo -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s 640x360 -aspect 640:360 -y bar"
       end
-      
+
       it 'should support passthrough height' do
         command = "ffmpeg -i $input_file$ -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s $resolution$ -aspect $aspect_ratio$ -y $output_file$"
         ffmpeg = Ffmpeg.new(command, {:input_file => "foo", :output_file => "bar", :width => "640", :height => "?"})
-        ffmpeg.command.should == "ffmpeg -i foo -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s 640x720 -aspect 640:720 -y bar"        
+        ffmpeg.command.should == "ffmpeg -i foo -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s 640x720 -aspect 640:720 -y bar"
       end
-      
+
       it 'should support passthrough width' do
         command = "ffmpeg -i $input_file$ -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s $resolution$ -aspect $aspect_ratio$ -y $output_file$"
         ffmpeg = Ffmpeg.new(command, {:input_file => "foo", :output_file => "bar", :width => "?", :height => "360"})
-        ffmpeg.command.should == "ffmpeg -i foo -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s 1280x360 -aspect 1280:360 -y bar"        
+        ffmpeg.command.should == "ffmpeg -i foo -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s 1280x360 -aspect 1280:360 -y bar"
       end
-      
+
     end
-    
+
     describe Ffmpeg, " when parsing a result" do
       before do
         setup_ffmpeg_spec
         @result = "FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
         Mac OSX universal build for ffmpegX
-          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
           libavutil version: 49.0.0
           libavcodec version: 51.9.0
           libavformat version: 50.4.0
@@ -100,13 +100,13 @@ module RVideo
           Stream #0.1 -> #0.0
           Stream #0.0 -> #0.1
         Press [q] to stop encoding
-        frame= 4126 q=31.0 Lsize=    5917kB time=69.1 bitrate= 702.0kbits/s    
+        frame= 4126 q=31.0 Lsize=    5917kB time=69.1 bitrate= 702.0kbits/s
         video:2417kB audio:540kB global headers:0kB muxing overhead 100.140277%
         "
-        
+
         @result2 = "FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
         Mac OSX universal build for ffmpegX
-          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
           libavutil version: 49.0.0
           libavcodec version: 51.9.0
           libavformat version: 50.4.0
@@ -122,13 +122,13 @@ module RVideo
           Stream #0.0 -> #0.0
           Stream #0.1 -> #0.1
         Press [q] to stop encoding
-        frame=  584 q=6.0 Lsize=     708kB time=19.5 bitrate= 297.8kbits/s    
+        frame=  584 q=6.0 Lsize=     708kB time=19.5 bitrate= 297.8kbits/s
         video:49kB audio:153kB global headers:0kB muxing overhead 250.444444%
-        "  
-        
+        "
+
         @result3 = "FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
         Mac OSX universal build for ffmpegX
-          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
           libavutil version: 49.0.0
           libavcodec version: 51.9.0
           libavformat version: 50.4.0
@@ -147,28 +147,28 @@ module RVideo
         frame=  273 fps= 31 q=10.0 Lsize=     398kB time=5.9 bitrate= 551.8kbits/s
         video:284kB audio:92kB global headers:0kB muxing overhead 5.723981%
         "
-        
+
         @result4 = "FFmpeg version SVN-rUNKNOWN, Copyright (c) 2000-2007 Fabrice Bellard, et al.
-          configuration: --prefix=/opt/local --prefix=/opt/local --disable-vhook --mandir=/opt/local/share/man --enable-shared --enable-pthreads --enable-libmp3lame --enable-gpl --enable-libfaac --enable-libfaad --enable-xvid --enable-x264 
+          configuration: --prefix=/opt/local --prefix=/opt/local --disable-vhook --mandir=/opt/local/share/man --enable-shared --enable-pthreads --enable-libmp3lame --enable-gpl --enable-libfaac --enable-libfaad --enable-xvid --enable-x264
           libavutil version: 49.4.0
           libavcodec version: 51.40.4
           libavformat version: 51.12.1
           built on Sep 19 2007 11:30:28, gcc: 4.0.1 (Apple Computer, Inc. build 5367)
-        Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/Users/Eric/Projects/rvidtest/rvideo/report/input_files/jobjob.mov': 
+        Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/Users/Eric/Projects/rvidtest/rvideo/report/input_files/jobjob.mov':
           Duration: 00:01:12.0, start: 0.000000, bitrate: 972 kb/s
           Stream #0.0(eng): Video: mpeg4, yuv420p, 512x384, 29.97 fps(r)
           Stream #0.1(eng): Audio: mp3, 48000 Hz, stereo
-        Output #0, mp3, to '/Users/Eric/Projects/rvidtest/rvideo/report/generated_reports/62/output_files/jobjob_mov/private_mp3.mp3': 
+        Output #0, mp3, to '/Users/Eric/Projects/rvidtest/rvideo/report/generated_reports/62/output_files/jobjob_mov/private_mp3.mp3':
           Stream #0.0: Audio: mp3, 48000 Hz, stereo, 0 kb/s
         Stream mapping:
           Stream #0.1 -> #0.0
         Press [q] to stop encoding
         mdb:94, lastbuf:0 skipping granule 0
-        size=    1080kB time=69.1 bitrate= 128.0kbits /s    
+        size=    1080kB time=69.1 bitrate= 128.0kbits /s
         video:0kB audio:1080kB global headers:0kB muxing overhead 0.002893%
         "
       end
-      
+
       it "should create correct result metadata" do
         @ffmpeg.send(:parse_result, @result).should be_true
         @ffmpeg.frame.should == '4126'
@@ -183,7 +183,7 @@ module RVideo
         @ffmpeg.overhead.should == "100.140277%"
         @ffmpeg.psnr.should be_nil
       end
-      
+
       it "should create correct result metadata (2)" do
         @ffmpeg.send(:parse_result, @result2).should be_true
         @ffmpeg.frame.should == '584'
@@ -198,7 +198,7 @@ module RVideo
         @ffmpeg.overhead.should == "250.444444%"
         @ffmpeg.psnr.should be_nil
       end
-      
+
       it "should create correct result metadata (3)" do
         @ffmpeg.send(:parse_result, @result3).should be_true
         @ffmpeg.frame.should == '273'
@@ -213,7 +213,7 @@ module RVideo
         @ffmpeg.overhead.should == "5.723981%"
         @ffmpeg.psnr.should be_nil
       end
-      
+
       it "should create correct result metadata (4)" do
         @ffmpeg.send(:parse_result, @result4).should be_true
         @ffmpeg.frame.should be_nil
@@ -228,30 +228,30 @@ module RVideo
         @ffmpeg.overhead.should == "0.002893%"
         @ffmpeg.psnr.should be_nil
       end
-      
+
       it "ffmpeg should calculate PSNR if it is turned on" do
         @ffmpeg.send(:parse_result, @result.gsub("Lsize=","LPSNR=Y:33.85 U:37.61 V:37.46 *:34.77 size=")).should be_true
         @ffmpeg.psnr.should == "Y:33.85 U:37.61 V:37.46 *:34.77"
       end
     end
-    
+
     context Ffmpeg, " result parsing should raise an exception" do
-      
+
       setup do
         setup_ffmpeg_spec
       end
-      
+
       specify "when codec not supported" do
         result = "Unexpected result details (FFmpeg version SVN-r9102, Copyright (c) 2000-2007 Fabrice Bellard, et al. configuration: --prefix=/opt/local --prefix=/opt/local --disable-vhook --mandir=/opt/local/share/man --enable-shared --enable-pthreads --disable-mmx --enable-gpl --enable-libmp3lame --enable-libogg --enable-libvorbis --enable-libtheora --enable-libfaac --enable-libfaad --enable-xvid --enable-x264 --enable-liba52 libavutil version: 49.4.0 libavcodec version: 51.40.4 libavformat version: 51.12.1 built on Dec 20 2007 13:49:31, gcc: 4.0.1 (Apple Inc. build 5465) Seems stream 0 codec frame rate differs from container frame rate: 30000.00 (30000/1) -> 29.97 (30000/1001) Input #0, avi, from '/Users/swd/Sites/worker/tmp/22/1989-Onboard-Hungaroring-Piquet.avi': Duration: 00:01:37.3, start: 0.000000, bitrate: 1393 kb/s Stream #0.0: Video: mpeg4, yuv420p, 512x384, 29.97 fps(r) Stream #0.1: Audio: mp3, 24000 Hz, stereo, 40 kb/s Unknown codec 'amr_nb' )"
         lambda {
           @ffmpeg.send(:parse_result, result)
         }.should raise_error(TranscoderError::InvalidFile, "Codec amr_nb not supported by this build of ffmpeg")
       end
-      
+
       specify "when not passed a command" do
         result = "FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
         Mac OSX universal build for ffmpegX
-          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
           libavutil version: 49.0.0
           libavcodec version: 51.9.0
           libavformat version: 50.4.0
@@ -654,22 +654,22 @@ module RVideo
           @ffmpeg.send(:parse_result, result)
         }.should raise_error(TranscoderError::InvalidCommand, "must pass a command to ffmpeg")
       end
-      
+
       specify "when given a broken command" do
         result = "FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
         Mac OSX universal build for ffmpegX
-          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
           libavutil version: 49.0.0
           libavcodec version: 51.9.0
           libavformat version: 50.4.0
           built on Apr 15 2006 04:58:19, gcc: 4.0.1 (Apple Computer, Inc. build 5250)
         Unable for find a suitable output format for 'foo'
         "
-        lambda { 
-          @ffmpeg.send(:parse_result, result) 
+        lambda {
+          @ffmpeg.send(:parse_result, result)
         }.should raise_error(TranscoderError::InvalidCommand, "Unable for find a suitable output format for 'foo'")
       end
-      
+
       specify "when the output file has no streams" do
         result = "Unexpected result details (FFmpeg version SVN-r10656, Copyright (c) 2000-2007 Fabrice Bellard, et al.
           configuration: --enable-libmp3lame --enable-libogg --enable-libvorbis --enable-liba52 --enable-libxvid --enable-libfaac --enable-libfaad --enable-libx264 --enable-libxvid --enable-pp --enable-shared --enable-gpl --enable-libtheora --enable-libfaadbin --enable-liba52bin --enable-libamr_nb --enable-libamr_wb --extra-ldflags=-L/usr/local/ffmpeg-src/ffmpeg/libavcodec/acfr16/ --extra-libs=-lacfr --enable-libacfr16
@@ -687,13 +687,13 @@ module RVideo
         lambda {
           @ffmpeg.send(:parse_result, result)
         }.should raise_error(TranscoderError, /Output file does not contain.*stream/)
-        
+
       end
-      
+
       specify "when given a missing input file" do
         result = "FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
         Mac OSX universal build for ffmpegX
-          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
           libavutil version: 49.0.0
           libavcodec version: 51.9.0
           libavformat version: 50.4.0
@@ -705,15 +705,15 @@ module RVideo
           @ffmpeg.send(:parse_result, result)
         }.should raise_error(TranscoderError::InvalidFile, /I\/O error: .+/)
       end
-      
+
       specify "when given a file it can't handle"
-      
+
       specify "when cancelled halfway through"
-    
+
       specify "when receiving unexpected results" do
         result = "FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
         Mac OSX universal build for ffmpegX
-          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
           libavutil version: 49.0.0
           libavcodec version: 51.9.0
           libavformat version: 50.4.0
@@ -735,7 +735,7 @@ module RVideo
           @ffmpeg.send(:parse_result, result)
         }.should raise_error(TranscoderError::UnexpectedResult, 'foo - bar')
       end
-      
+
       specify "with an unsupported codec" do
         result = "FFmpeg version SVN-r9102, Copyright (c) 2000-2007 Fabrice Bellard, et al. configuration: --prefix=/opt/local --prefix=/opt/local --disable-vhook --mandir=/opt/local/share/man --enable-shared --enable-pthreads --disable-mmx --enable-gpl --enable-libmp3lame --enable-libogg --enable-libvorbis --enable-libtheora --enable-libfaac --enable-xvid --enable-x264 --enable-liba52 libavutil version: 49.4.0 libavcodec version: 51.40.4 libavformat version: 51.12.1 built on Dec 11 2007 12:00:30, gcc: 4.0.1 (Apple Inc. build 5465) Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/Users/jon/projects/rvideo/spec/files/kites.mp4': Duration: 00:00:19.6, start: 0.000000, bitrate: 98 kb/s Stream #0.0(und): Video: mpeg4, yuv420p, 176x144, 10.00 fps(r) Stream #0.1(und): Audio: samr / 0x726D6173, 8000 Hz, mono Output #0, flv, to '/Users/jon/projects/rvideo/tmp/kites.flv': Stream #0.0: Video: flv, yuv420p, 320x240, q=2-31, pass 1, 300 kb/s, 15.00 fps(c) Stream #0.1: Audio: mp3, 22050 Hz, stereo, 64 kb/s Stream mapping: Stream #0.0 -> #0.0 Stream #0.1 -> #0.1 Unsupported codec (id=73728) for input stream #0.1"
         @ffmpeg.original = Inspector.new(:raw_response => files('kites2'))
@@ -743,11 +743,11 @@ module RVideo
           @ffmpeg.send(:parse_result, result)
         }.should raise_error(TranscoderError::InvalidFile, /samr/)
       end
-      
+
       specify "when a stream cannot be written" do
         result = "FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
         Mac OSX universal build for ffmpegX
-          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+          configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
           libavutil version: 49.0.0
           libavcodec version: 51.9.0
           libavformat version: 50.4.0
@@ -769,13 +769,13 @@ module RVideo
           @ffmpeg.send(:parse_result, result)
         }.should raise_error(TranscoderError, /flv doesnt support.*incorrect codec/)
       end
-      
+
     end
   end
 end
 
 def setup_ffmpeg_spec
   @options = {:input_file => "foo", :output_file => "bar", :width => "320", :height => "240"}
-  @simple_avi = "ffmpeg -i $input_file$ -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s $resolution$ -y $output_file$"  
+  @simple_avi = "ffmpeg -i $input_file$ -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s $resolution$ -y $output_file$"
   @ffmpeg = RVideo::Tools::Ffmpeg.new(@simple_avi, @options)
 end

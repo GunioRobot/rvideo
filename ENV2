@@ -67,7 +67,7 @@ cd ..
 
 cd faad2
 
-# OS X - 
+# OS X -
 # Patch as per darwinports version
 # Comment out #define HAS_LRINTF block in common.h (including lrintf method definition)
 
@@ -100,11 +100,11 @@ cd x264
 ./configure --enable-pthread && make && sudo make install
 cd ..
 
-cd amrnb-7.0.0.0/ 
+cd amrnb-7.0.0.0/
 ./configure && make && sudo make install
 cd ..
 
-cd amrwb-7.0.0.0/ 
+cd amrwb-7.0.0.0/
 ./configure && make && sudo make install
 cd ..
 

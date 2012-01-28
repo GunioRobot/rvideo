@@ -2,53 +2,53 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 module RVideo
   module Tools
-  
+
     describe Mencoder do
       before do
         setup_mencoder_spec
       end
-      
+
       it "should initialize with valid arguments" do
         @mencoder.class.should == Mencoder
       end
-      
+
       it "should have the correct tool_command" do
         @mencoder.tool_command.should == 'mencoder'
       end
-      
+
       it "should call parse_result on execute, with a mencoder result string" do
         @mencoder.should_receive(:parse_result).once.with /\AMEncoder/
         @mencoder.execute
       end
-      
+
       it "should mixin AbstractTool" do
         Mencoder.included_modules.include?(AbstractTool::InstanceMethods).should be_true
       end
-      
+
       it "should set supported options successfully" do
         @mencoder.options[:resolution].should == @options[:resolution]
         @mencoder.options[:input_file].should == @options[:input_file]
         @mencoder.options[:output_file].should == @options[:output_file]
       end
     end
-    
+
     describe Mencoder, " when parsing a result" do
       before do
         setup_mencoder_spec
       end
-      
+
       it "should create correct result metadata (1)" do
         @mencoder.send(:parse_result, @long_result)
       end
 
     end
-    
+
     context Mencoder, " result parsing should raise an exception" do
-      
+
       setup do
         setup_mencoder_spec
       end
-      
+
       specify "when not passed a command" do
         result = "MEncoder 1.0rc1-4.0.1 (C) 2000-2006 MPlayer Team
         CPU: Intel(R) Core(TM)2 CPU         T7400  @ 2.16GHz (Family: 6, Model: 15, Stepping: 6)
@@ -58,7 +58,7 @@ module RVideo
         98 audio & 216 video codecs
 
         Exiting... (No output file specified, please see the -o option.)"
-        
+
         lambda {
           @mencoder.send(:parse_result, result)
         }.should raise_error(TranscoderError::InvalidCommand, "no command passed to mencoder, or no output file specified")
@@ -69,9 +69,9 @@ end
 
 def setup_mencoder_spec
   @options = {:input_file => "foo", :output_file => "bar", :resolution => "baz"}
-  @simple_avi = "mencoder -i $input_file$ -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s $resolution$ -y $output_file$"  
+  @simple_avi = "mencoder -i $input_file$ -ar 44100 -ab 64 -vcodec xvid -acodec mp3 -r 29.97 -s $resolution$ -y $output_file$"
   @mencoder = RVideo::Tools::Mencoder.new(@simple_avi, @options)
-  
+
   @long_result = "MEncoder 1.0rc1-4.0.1 (C) 2000-2006 MPlayer Team
   CPU: Intel(R) Core(TM)2 CPU         T7400  @ 2.16GHz (Family: 6, Model: 15, Stepping: 6)
   CPUflags: Type: 6 MMX: 1 MMX2: 1 3DNow: 0 3DNow2: 0 SSE: 1 SSE2: 1

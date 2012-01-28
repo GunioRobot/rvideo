@@ -5,7 +5,7 @@ h1. &#x2192; 'rvideo'
 
 h2. What
 
-RVideo is a Ruby library inspects and processes video and audio files by 
+RVideo is a Ruby library inspects and processes video and audio files by
 providing an interface to free Unix tools like ffmpeg.
 
 h2. Installing
@@ -24,7 +24,7 @@ Or, for a better build (recommended), add additional video- and audio-related
 libraries, like this:
 
   <pre>sudo port install ffmpeg +lame +libogg +vorbis +faac +faad +xvid +x264 +a52</pre>
-  
+
 Most package management systems include a build of ffmpeg, but many include a
 poor build. So you may need to compile from scratch.
 
@@ -32,7 +32,7 @@ If you want to create Flash Video files, also install flvtool2:
 
   <pre>sudo gem install flvtool2</pre>
 
-Once ffmpeg and RVideo are installed, you're set. 
+Once ffmpeg and RVideo are installed, you're set.
 
 h2. The basics
 
@@ -46,7 +46,7 @@ file.resolution   # => 320x240
 <pre>
 command = "ffmpeg -i $input_file -vcodec xvid -s $resolution$ $output_file$"
 options = {
-  :input_file => "#{FILE_PATH}/filename.mp4", 
+  :input_file => "#{FILE_PATH}/filename.mp4",
   :output_file => "#{FILE_PATH}/processed_file.mp4",
   :resolution => "640x480"
   }
@@ -60,15 +60,15 @@ transcoder.processed.video_codec # => xvid
 
 h2. Demonstration of usage
 
-To inspect a file, initialize an RVideo file inspector object. See the 
+To inspect a file, initialize an RVideo file inspector object. See the
 documentation for details.
 
 A few examples:
 
 <pre>file = RVideo::Inspector.new(:file => "#{APP_ROOT}/files/input.mp4")</pre>
-  
+
 <pre>file = RVideo::Inspector.new(:raw_response => @existing_response)</pre>
-  
+
 <pre>
 file = RVideo::Inspector.new(:file => "#{APP_ROOT}/files/input.mp4",
   :ffmpeg_binary => "#{APP_ROOT}/bin/ffmpeg")
@@ -112,7 +112,7 @@ file is unreadable.
 
 h2. Contribute
 
-Contribute to RVideo! If you want to help out, there are a few things you can 
+Contribute to RVideo! If you want to help out, there are a few things you can
 do.
 
 * Use, test, and submit bugs/patches
@@ -135,7 +135,7 @@ Zencoder is a commercial video transcoder built by Slantwise Design. Zencoder us
 
 h2. License
 
-This code is free to use under the terms of the MIT license. 
+This code is free to use under the terms of the MIT license.
 
 h2. Contact
 

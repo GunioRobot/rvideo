@@ -2,7 +2,7 @@ fancypants:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -17,7 +17,7 @@ fancypants:
 kites:
   response: |
     FFmpeg version SVN-r6399, Copyright (c) 2000-2004 Fabrice Bellard
-    configuration:  --prefix=/opt/local --prefix=/opt/local --disable-vhook --mandir=/opt/local/share/man --extra-cflags=-DHAVE_LRINTF --extra-ldflags=-d -L/opt/local/lib --enable-gpl --enable-mp3lame --enable-libogg --enable-vorbis --enable-faac --enable-faad --enable-xvid --enable-x264 --enable-a52 --enable-dts 
+    configuration:  --prefix=/opt/local --prefix=/opt/local --disable-vhook --mandir=/opt/local/share/man --extra-cflags=-DHAVE_LRINTF --extra-ldflags=-d -L/opt/local/lib --enable-gpl --enable-mp3lame --enable-libogg --enable-vorbis --enable-faac --enable-faad --enable-xvid --enable-x264 --enable-a52 --enable-dts
     libavutil version: 49.0.1
     libavcodec version: 51.16.0
     libavformat version: 50.5.0
@@ -44,7 +44,7 @@ duck:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -57,7 +57,7 @@ eiffel:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -70,7 +70,7 @@ mpeg1_957:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -84,7 +84,7 @@ buffy:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -100,7 +100,7 @@ chainsaw:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -114,7 +114,7 @@ chairprank:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -129,7 +129,7 @@ fire_short:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -144,7 +144,7 @@ fire_video_only:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -157,7 +157,7 @@ fire_audio_only:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -170,7 +170,7 @@ fireproof:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -184,7 +184,7 @@ jobjob:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -200,7 +200,7 @@ lecture:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -214,7 +214,7 @@ nope:
   respone: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -228,7 +228,7 @@ tiki:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -242,7 +242,7 @@ ben:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -256,7 +256,7 @@ dan:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -272,7 +272,7 @@ out:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -288,7 +288,7 @@ truck:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -304,7 +304,7 @@ live_tv:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -320,7 +320,7 @@ jedermann:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -336,7 +336,7 @@ athf:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -352,7 +352,7 @@ macgyver:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -366,7 +366,7 @@ text:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0
@@ -376,7 +376,7 @@ invalid:
   response: |
     FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
     Mac OSX universal build for ffmpegX
-      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+      configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
       libavutil version: 49.0.0
       libavcodec version: 51.9.0
       libavformat version: 50.4.0

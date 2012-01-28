@@ -47,27 +47,27 @@ HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
 DOWNLOAD_PATH = "http://rubyforge.org/projects/#{RUBYFORGE_PROJECT}"
 
 NAME = "rvideo"
-REV = nil 
-# UNCOMMENT IF REQUIRED: 
+REV = nil
+# UNCOMMENT IF REQUIRED:
 # REV = `svn info`.each {|line| if line =~ /^Revision:/ then k,v = line.split(': '); break v.chomp; else next; end} rescue nil
 VERS = Rvideo::VERSION::STRING + (REV ? ".#{REV}" : "")
 CLEAN.include ['**/.*.sw?', '*.gem', '.config', '**/.DS_Store']
 RDOC_OPTS = ['--quiet', '--title', 'rvideo documentation',
     "--opname", "index.html",
-    "--line-numbers", 
+    "--line-numbers",
     "--main", "README",
     "--inline-source"]
 
 class Hoe
-  def extra_deps 
-    @extra_deps.reject { |x| Array(x).first == 'hoe' } 
-  end 
+  def extra_deps
+    @extra_deps.reject { |x| Array(x).first == 'hoe' }
+  end
 end
 
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
 hoe = Hoe.new(GEM_NAME, VERS) do |p|
-  p.author = AUTHOR 
+  p.author = AUTHOR
   p.description = DESCRIPTION
   p.email = EMAIL
   p.summary = DESCRIPTION
@@ -75,7 +75,7 @@ hoe = Hoe.new(GEM_NAME, VERS) do |p|
   p.rubyforge_name = RUBYFORGE_PROJECT if RUBYFORGE_PROJECT
   p.test_globs = ["test/**/test_*.rb"]
   p.clean_globs |= CLEAN  #An array of file patterns to delete on clean.
-  
+
   # == Optional
   p.changes = p.paragraphs_of("History.txt", 0..1).join("\n\n")
   #p.extra_deps = []     # An array of rubygem dependencies [name, version], e.g. [ ['active_support', '>= 1.3.1'] ]
@@ -133,12 +133,12 @@ require File.dirname(__FILE__) + '/lib/rvideo'
 
 namespace :spec do
   desc "Run Unit Specs"
-  Spec::Rake::SpecTask.new("units") do |t| 
+  Spec::Rake::SpecTask.new("units") do |t|
     t.spec_files = FileList['spec/units/**/*.rb']
   end
 
   desc "Run Integration Specs"
-  Spec::Rake::SpecTask.new("integrations") do |t| 
+  Spec::Rake::SpecTask.new("integrations") do |t|
     t.spec_files = FileList['spec/integrations/**/*.rb']
   end
 end

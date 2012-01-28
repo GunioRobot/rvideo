@@ -12,12 +12,12 @@ module RVideo
       def original_fps
         inspect_original if @original.nil?
         if @original.fps
-          "-r #{@original.fps}" 
+          "-r #{@original.fps}"
         else
           ""
         end
       end
-      
+
       def parse_progress(line)
         if line =~ /Pos:\s*.*\s*\(\s*(\d+)/
           p = $1.to_i
@@ -26,25 +26,25 @@ module RVideo
         end
         nil
       end
-      
+
 
       def parse_result(result)
         if m = /Exiting.*No output file specified/.match(result)
           raise TranscoderError::InvalidCommand, "no command passed to mencoder, or no output file specified"
         end
-        
+
         if m = /Sorry, this file format is not recognized\/supported/.match(result)
           raise TranscoderError::InvalidFile, "unknown format"
         end
-        
+
         if m = /Cannot open file\/device./.match(result)
           raise TranscoderError::InvalidFile, "I/O error"
         end
-        
+
         if m = /File not found:$/.match(result)
           raise TranscoderError::InvalidFile, "I/O error"
         end
-        
+
         video_details = result.match /Video stream:(.*)$/
         if video_details
           @bitrate = sanitary_match(/Video stream:\s*([0-9.]*)/, video_details[0])
@@ -55,7 +55,7 @@ module RVideo
         elsif result =~ /Video stream is mandatory/
           raise TranscoderError::InvalidFile, "Video stream required, and no video stream found"
         end
-        
+
         audio_details = result.match /Audio stream:(.*)$/
         if audio_details
           @audio_size = sanitary_match(/size:\s*(\d*)\s*(\S*)/, audio_details[0])
@@ -69,7 +69,7 @@ module RVideo
         match = regexp.match(string)
         return match[1] if match
       end
-      
+
     end
   end
 end

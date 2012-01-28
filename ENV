@@ -65,7 +65,7 @@ unzip 26104-700_ANSI_C_source_code.zip
 cd ../amrwb_float/
 unzip ../../../26204-700.zip
 unzip 26204-700_ANSI-C_source_code.zip
-** not working. 
+** not working.
 
 X264
 svn co svn://svn.videolan.org/x264/trunk x264

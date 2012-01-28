@@ -6,7 +6,7 @@ RVideo allows you to inspect and process video files.
 Installation is a little involved. First, install the gem:
 
   sudo gem install rvideo
-  
+
 Next, install ffmpeg and (possibly) other related libraries. This is
 documented elsewhere on the web, and can be a headache. If you are on OS X,
 the Darwinports build is reasonably good (though not perfect). Install with:
@@ -17,7 +17,7 @@ Or, for a better build (recommended), add additional video- and audio-related
 libraries, like this:
 
   sudo port install ffmpeg +lame +libogg +vorbis +faac +faad +xvid +x264 +a52
-  
+
 Most package management systems include a build of ffmpeg, but many include a
 poor build. So you may need to compile from scratch.
 
@@ -25,17 +25,17 @@ If you want to create Flash Video files, also install flvtool2:
 
   sudo gem install flvtool2
 
-Once ffmpeg and RVideo are installed, you're set. 
+Once ffmpeg and RVideo are installed, you're set.
 
-To inspect a file, initialize an RVideo file inspector object. See the 
+To inspect a file, initialize an RVideo file inspector object. See the
 documentation for details.
 
 A few examples:
 
   file = RVideo::Inspector.new(:file => "#{APP_ROOT}/files/input.mp4")
-  
+
   file = RVideo::Inspector.new(:raw_response => @existing_response)
-  
+
   file = RVideo::Inspector.new(:file => "#{APP_ROOT}/files/input.mp4",
                                 :ffmpeg_binary => "#{APP_ROOT}/bin/ffmpeg")
 
@@ -71,7 +71,7 @@ file is unreadable.
 
 Thanks to Peter Boling for early work on RVideo.
 
-Contribute to RVideo! If you want to help out, there are a few things you can 
+Contribute to RVideo! If you want to help out, there are a few things you can
 do.
 
 - Use, test, and submit bugs/patches
@@ -82,10 +82,10 @@ do.
 If RVideo is useful to you, you may also be interested in RMovie, another Ruby
 video library. See http://rmovie.rubyforge.org/ for more.
 
-Finally, watch for Spinoza, a commercial video transcoder built by Slantwise 
-Design. Spinoza uses RVideo for its video processing, but adds file queuing,  
-distributed transcoding, a web-based transcoder dashboard, and more. See 
+Finally, watch for Spinoza, a commercial video transcoder built by Slantwise
+Design. Spinoza uses RVideo for its video processing, but adds file queuing,
+distributed transcoding, a web-based transcoder dashboard, and more. See
 http://spinoza.tv or http://slantwisedesign.com for more.
 
-Copyright (c) 2007 Jonathan Dahl and Slantwise Design. Released under the MIT 
+Copyright (c) 2007 Jonathan Dahl and Slantwise Design. Released under the MIT
 license.

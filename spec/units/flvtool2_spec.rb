@@ -2,86 +2,86 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 module RVideo
   module Tools
-  
+
     describe Flvtool2 do
       before do
         setup_flvtool2_spec
       end
-      
+
       it "should initialize with valid arguments" do
         @flvtool2.class.should == Flvtool2
       end
-      
+
       it "should have the correct tool_command" do
         @flvtool2.tool_command.should == 'flvtool2'
       end
-      
+
       it "should call parse_result on execute, with a result string" do
         @flvtool2.should_receive(:parse_result).once.with /\AERROR: No such file or directory/
         @flvtool2.execute
       end
-      
+
       it "should mixin AbstractTool" do
         Flvtool2.included_modules.include?(AbstractTool::InstanceMethods).should be_true
       end
-      
+
       it "should set supported options successfully" do
         @flvtool2.options[:temp_file].should == @options[:temp_file]
         @flvtool2.options[:output_file].should == @options[:output_file]
       end
-      
+
     end
 
     describe Flvtool2, " when parsing a result" do
       before do
         setup_flvtool2_spec
       end
-      
+
       it "should set metadata if called with -P option" do
         @flvtool2.send(:parse_result, @metadata_result).should be_true
         @flvtool2.raw_metadata.should == @metadata_result
       end
-      
+
       it "should succeed but not set metadata without -P option" do
         @flvtool2.send(:parse_result,"").should be_true
       end
     end
-    
+
     context Flvtool2, " result parsing should raise an exception" do
-      
+
       setup do
         setup_flvtool2_spec
       end
-      
+
       specify "when not passed a command" do
         lambda {
           @flvtool2.send(:parse_result, @helptext)
         }.should raise_error(TranscoderError::InvalidCommand, /flvtool2 help text/)
       end
-      
+
       specify "when receiving an empty file" do
         lambda {
           @flvtool2.send(:parse_result, @empty_file)
         }.should raise_error(TranscoderError::InvalidFile, /Output file was empty/)
       end
-      
+
       specify "when passed an invalid input file" do
         lambda {
           @flvtool2.send(:parse_result, @non_flv_input)
         }.should raise_error(TranscoderError::InvalidFile, "input must be a valid FLV file")
       end
-      
+
       specify "when input file not found" do
         lambda {
           @flvtool2.send(:parse_result, @no_input_file)
         }.should raise_error(TranscoderError::InputFileNotFound, /^ERROR: No such file or directory/)
       end
-      
+
       specify "when receiving unexpected results" do
         lambda {
           @flvtool2.send(:parse_result, @unexpected_results)
         }.should raise_error(TranscoderError::UnexpectedResult, /ffmpeg/i)
-      end      
+      end
     end
   end
 end
@@ -90,7 +90,7 @@ def setup_flvtool2_spec
   @options = {:temp_file => "foo", :output_file => "bar"}
   @command = "flvtool2 -U $temp_file$ $output_file$"
   @flvtool2 = RVideo::Tools::Flvtool2.new(@command, @options)
-  
+
   @helptext = "FLVTool2 1.0.6
   Copyright (c) 2005-2007 Norman Timmler (inlet media e.K., Hamburg, Germany)
   Get the latest version from http://www.inlet-media.de/flvtool2
@@ -134,7 +134,7 @@ def setup_flvtool2_spec
 
   REPORT BUGS at http://projects.inlet-media.de/flvtool2
   Powered by Riva VX, http://rivavx.com"
-  
+
   @non_flv_input = "ERROR: IO is not a FLV stream. Wrong signature.
   ERROR: /opt/local/lib/ruby/gems/1.8/gems/flvtool2-1.0.6/lib/flv/stream.rb:393:in `read_header'
   ERROR: /opt/local/lib/ruby/gems/1.8/gems/flvtool2-1.0.6/lib/flv/stream.rb:57:in `initialize'
@@ -151,7 +151,7 @@ def setup_flvtool2_spec
   ERROR: /opt/local/lib/ruby/gems/1.8/gems/flvtool2-1.0.6/bin/flvtool2:2
   ERROR: /opt/local/bin/flvtool2:18:in `load'
   ERROR: /opt/local/bin/flvtool2:18"
-  
+
   @no_input_file = "ERROR: No such file or directory - /Users/jon/code/spinoza/rvideo/foobar
   ERROR: /opt/local/lib/ruby/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2/base.rb:259:in `initialize'
   ERROR: /opt/local/lib/ruby/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2/base.rb:259:in `open'
@@ -167,10 +167,10 @@ def setup_flvtool2_spec
   ERROR: /opt/local/lib/ruby/gems/1.8/gems/flvtool2-1.0.6/bin/flvtool2:2
   ERROR: /opt/local/bin/flvtool2:18:in `load'
   ERROR: /opt/local/bin/flvtool2:18"
-  
+
   @unexpected_results = "FFmpeg version CVS, Copyright (c) 2000-2004 Fabrice Bellard
   Mac OSX universal build for ffmpegX
-    configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264 
+    configuration:  --enable-memalign-hack --enable-mp3lame --enable-gpl --disable-vhook --disable-ffplay --disable-ffserver --enable-a52 --enable-xvid --enable-faac --enable-faad --enable-amr_nb --enable-amr_wb --enable-pthreads --enable-x264
     libavutil version: 49.0.0
     libavcodec version: 51.9.0
     libavformat version: 50.4.0
@@ -185,13 +185,13 @@ def setup_flvtool2_spec
     Stream #0.1 -> #0.0
     Stream #0.0 -> #0.1
   Press [q] to stop encoding"
-  
+
   @empty_file = "ERROR: undefined method `timestamp' for nil:NilClass ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flv/stream.rb:285:in `lasttimestamp' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flv/stream.rb:274:in `duration' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2/base.rb:181:in `add_meta_data_tag' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2/base.rb:137:in `update' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2/base.rb:47:in `send' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2/base.rb:47:in `execute!' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2/base.rb:46:in `each' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2/base.rb:46:in `execute!' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2/base.rb:239:in `process_files' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2/base.rb:225:in `each' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2/base.rb:225:in `process_files' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2/base.rb:44:in `execute!' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2.rb:168:in `execute!' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/lib/flvtool2.rb:228 ERROR: /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require' ERROR: /usr/lib/ruby/1.8/rubygems/custom_require.rb:27:in `require' ERROR: /var/lib/gems/1.8/gems/flvtool2-1.0.6/bin/flvtool2:2 ERROR: /var/lib/gems/1.8/bin/flvtool2:18:in `load' ERROR: /var/lib/gems/1.8/bin/flvtool2:18"
-  
+
   @metadata_result = "---
-  /Users/jon/code/spinoza/rvideo/temp.flv: 
+  /Users/jon/code/spinoza/rvideo/temp.flv:
     hasKeyframes: true
-    cuePoints: 
+    cuePoints:
     audiodatarate: 64.8512825785226
     hasVideo: true
     stereo: false
@@ -212,8 +212,8 @@ def setup_flvtool2_spec
     height: 240
     filesize: 998071
     hasMetadata: true
-    keyframes: 
-      times: 
+    keyframes:
+      times:
         - 0
         - 0.4
         - 0.801
@@ -263,7 +263,7 @@ def setup_flvtool2_spec
         - 18.418
         - 18.819
         - 19.219
-      filepositions: 
+      filepositions:
         - 1573
         - 24627
         - 56532

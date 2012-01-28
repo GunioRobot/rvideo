@@ -43,7 +43,7 @@
 	<h2>What</h2>
 
 
-	<p>RVideo is a Ruby library inspects and processes video and audio files by 
+	<p>RVideo is a Ruby library inspects and processes video and audio files by
 providing an interface to free Unix tools like ffmpeg.</p>
 
 
@@ -91,11 +91,11 @@ file.resolution   # =&gt; 320x240
 </pre>
 
 <pre>
-command = "ffmpeg -i $input_file -vcodec xvid -s $resolution$ $output_file$" 
+command = "ffmpeg -i $input_file -vcodec xvid -s $resolution$ $output_file$"
 options = {
-  :input_file =&gt; "#{FILE_PATH}/filename.mp4", 
+  :input_file =&gt; "#{FILE_PATH}/filename.mp4",
   :output_file =&gt; "#{FILE_PATH}/processed_file.mp4",
-  :resolution =&gt; "640x480" 
+  :resolution =&gt; "640x480"
   }
 
 transcoder = RVideo::Transcoder.new
@@ -108,7 +108,7 @@ transcoder.processed.video_codec # =&gt; xvid
 	<h2>Demonstration of usage</h2>
 
 
-	<p>To inspect a file, initialize an RVideo file inspector object. See the 
+	<p>To inspect a file, initialize an RVideo file inspector object. See the
 documentation for details.</p>
 
 
@@ -125,8 +125,8 @@ file = RVideo::Inspector.new(:file =&gt; "#{APP_ROOT}/files/input.mp4",
 </pre>
 
 <pre>
-file.fps        # =&gt; "29.97" 
-file.duration   # =&gt; "00:05:23.4" 
+file.fps        # =&gt; "29.97"
+file.duration   # =&gt; "00:05:23.4"
 </pre>
 
 	<p>To transcode a video, initialize a Transcoder object.</p>
@@ -138,14 +138,14 @@ file.duration   # =&gt; "00:05:23.4"
 
 
 <pre>
-recipe = "ffmpeg -i $input_file$ -ar 22050 -ab 64 -f flv -r 29.97 -s" 
-recipe += " $resolution$ -y $output_file$" 
-recipe += "\nflvtool2 -U $output_file$" 
+recipe = "ffmpeg -i $input_file$ -ar 22050 -ab 64 -f flv -r 29.97 -s"
+recipe += " $resolution$ -y $output_file$"
+recipe += "\nflvtool2 -U $output_file$"
 begin
   transcoder.execute(recipe, {:input_file =&gt; "/path/to/input.mp4",
     :output_file =&gt; "/path/to/output.flv", :resolution =&gt; "640x360"})
 rescue TranscoderError =&gt; e
-  puts "Unable to transcode file: #{e.class} - #{e.message}" 
+  puts "Unable to transcode file: #{e.class} - #{e.message}"
 end
 </pre>
 
@@ -167,7 +167,7 @@ file is unreadable.</p>
 	<h2>Contribute</h2>
 
 
-	<p>Contribute to RVideo! If you want to help out, there are a few things you can 
+	<p>Contribute to RVideo! If you want to help out, there are a few things you can
 do.</p>
 
 

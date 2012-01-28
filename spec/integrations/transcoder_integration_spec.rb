@@ -26,7 +26,7 @@ module RVideo
     end
 
   end
-  
+
   describe "When taking screenshots" do
     it "should create a screenshot with a default output path" do
       output_file = "#{TEMP_PATH}/kites-10p.jpg"
@@ -36,7 +36,7 @@ module RVideo
       FileTest.exist?(output_file).should be_true
       FileUtils.rm_f(output_file)
     end
-    
+
     it "should create a screenshot with a custom output path" do
       output_file = "#{TEST_FILE_PATH}/kites-10p.jpg"
       FileTest.exist?(output_file).should_not be_true

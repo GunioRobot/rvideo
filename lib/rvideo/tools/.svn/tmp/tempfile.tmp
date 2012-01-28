@@ -1,12 +1,12 @@
 module RVideo # :nodoc:
   module Tools # :nodoc:
     class AbstractTool
-      
+
       #
-      # AbstractTool is an interface to every transcoder tool class (e.g. 
+      # AbstractTool is an interface to every transcoder tool class (e.g.
       # ffmpeg, flvtool2). Called by the Transcoder class.
       #
-      
+
       def self.assign(cmd, options = {})
         tool_name = cmd.split(" ").first
         begin
@@ -15,12 +15,12 @@ module RVideo # :nodoc:
           raise TranscoderError::UnknownTool, "The recipe tried to use the '#{tool_name}' tool, which does not exist."
         end
       end
-      
-      
+
+
       module InstanceMethods
         attr_reader :options, :command, :raw_result, :progress
         attr_writer :original
-        
+
         def initialize(raw_command, options = {})
           @raw_command = raw_command
           @options = HashWithIndifferentAccess.new(options)
@@ -30,7 +30,7 @@ module RVideo # :nodoc:
         #
         # Execute the command and parse the result.
         #
-        
+
         def execute
           final_command = "#{@command} 2>&1"
           puts ":: #{final_command}"
@@ -39,14 +39,14 @@ module RVideo # :nodoc:
           if block_given?
             @raw_result = ''
             IO.popen(final_command) do |pipe|
-                pipe.each("\r") do |line|                
+                pipe.each("\r") do |line|
                 new_progress, duration = parse_progress(line, duration)
                 if new_progress != @progress
                   @progress = new_progress
                   yield @progress
                   $defout.flush
                 end
-                @raw_result += line + "\r" 
+                @raw_result += line + "\r"
               end
             end
           else
@@ -55,17 +55,17 @@ module RVideo # :nodoc:
           Transcoder.logger.info("Result: \n#{@raw_result}")
           parse_result(@raw_result)
         end
-        
-        
-        
+
+
+
         #
         # Magic parameters
         #
-        
+
         def original_fps
           raise ParameterError, "The #{self.class} tool has not implemented the original_fps method."
         end
-        
+
         def resolution
           if @options['resolution']
             @options['resolution']
@@ -128,12 +128,12 @@ module RVideo # :nodoc:
             height
           end
         end
-        
+
         private
-        
-        
+
+
         #
-        # Look for variables surrounded by $, and interpolate with either 
+        # Look for variables surrounded by $, and interpolate with either
         # variables passed in the options hash, or special methods provided by
         # the tool class (e.g. "$original_fps$" with ffmpeg).
         #
@@ -147,29 +147,29 @@ module RVideo # :nodoc:
           end
           raw_command.gsub("\\$", "$")
         end
-        
+
         #
         # Strip the $s. First, look for a supplied option that matches the
         # variable name. If one is not found, look for a method that matches.
         # If not found, raise ParameterError exception.
-        # 
-        
+        #
+
         def matched_variable(match)
           variable_name = match.gsub("$","")
           if self.respond_to? variable_name
             self.send(variable_name)
-          elsif @options.key?(variable_name) 
+          elsif @options.key?(variable_name)
             @options[variable_name] || ""
           else
             raise TranscoderError::ParameterError, "command is looking for the #{variable_name} parameter, but it was not provided. (Command: #{@raw_command})"
           end
         end
-        
+
         def inspect_original
           @original = Inspector.new(:file => options[:input_file])
         end
       end
-    
+
     end
   end
 end
